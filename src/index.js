@@ -1,17 +1,17 @@
+const db = require('./db');
 const express = require('express');
 const app = express();
 const {Pool} = require('pg');
 const port = 3000;
-const pool= new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'postgres',
-    port: "5432",
-    password: 'comenius12',
-});
-app.get('/', (req, res) => {
-    res.send('Hello World anni!');
-});
+app.get('/data', async(req, res)=>{
+    try{
+        const result= await db.query('SELECT * FROM cuadernos'); 
+        res.send(result.rows);
+    }catch(e){
+        console.log(e);
+        res.status(500).send('Something went wrong');
+    }
+}); 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
