@@ -1,0 +1,13 @@
+<div>
+    <h1>Home</h1>
+    <p>Home page content</p>
+    <ul>
+        {{#each resultado}}
+            <li>
+                <h1>{{this.asignatura}}</h1>
+                <p>{{this.nota}}</p>
+                <p>{{this.titulo}}</p>
+            </li>
+        {{/each}}
+    </ul>
+</div>
